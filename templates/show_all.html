@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+      <style>
+
+         @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+         #students {
+  font-family: "Trebuchet MS";
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 18px;
+}
+
+#students td, #students th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#students tr:nth-child(even){background-color: #f2f2f2;}
+
+#students tr:hover {background-color: #ddd;}
+
+#students th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+         body
+         {
+            font-family: "Roboto", Helvetica, Arial, sans-serif;
+            font-weight: 100;
+            font-size: 20px;
+            line-height: 30px;
+            color:black;
+            /*background: white;*/
+            
+         }
+        
+         .heading
+         {
+            margin-left: 2%;
+            font-family: "Roboto";
+            text-align: center;
+            color: black;
+            width: 1450px;
+            height: 100px;
+            padding-top: 20px;
+            background-color: #4CAF50;
+            box-shadow: 5px 5px;
+            
+             }
+         #headingg
+         {
+            color: white;
+            vertical-align: center;
+         }
+         
+      </style>
+   </head>
+   <body>
+      <h3 class="heading">
+         <a href = "{{ url_for('show_all') }}" id="headingg">COURSE REGISTRATION FORM</a>
+      </h3>
+      
+      <hr/>
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+		<center>
+      <h3>Students (<a href = "{{ url_for('new') }}">Add Student
+         </a>)</h3>
+      </center>
+      <table id="students">
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th> Roll No</th>
+               <th> Gender </th>
+               <th> Course </th>
+               <th>City</th>
+               <th>Address</th>
+               <th>Pin</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for student in students %}
+               <tr>
+                  <td>{{ student.name }}</td>
+                  <td> {{ student.rollno }}</td>
+                  <td>{{ student.gender }}</td>
+                  <td> {{ student.course }}</td>
+                  <td>{{ student.city }}</td>
+                  <td>{{ student.addr }}</td>
+                  <td>{{ student.pin }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </body>
+</html>
